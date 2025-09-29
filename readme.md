@@ -1,145 +1,152 @@
-# React 19 - server actions
+# Documentaion
 
-# 01_Basic of next.js
+Topic 1 - React 19 — Server Actions
 
-# layout
+Functions that run directly on the server.
 
-# Sever components vs client
+Useful for handling forms, saving data, and performing secure operations without separate API routes.
 
-# by default -> server Component
+Topic 2 - Basics of Next.js
 
-# server:
+Next.js is built on React and adds routing, layouts, server components, server actions, SEO, and more.
 
-# fetch data inside a server component
+Routing is based on the folder structure.
 
-# access backend resources directly
+Topic 3 - Layouts
 
-# keep senisitie info in the server side
+A layout is a shared UI wrapper.
 
-# not to be exposed on the client side
+Root layout (app/layout.tsx) wraps the whole application.
 
-# not todo:
+You can also create layouts for specific sections (e.g., a sidebar for dashboard pages).
 
-# we cant use react hooks
+Topic 4 - Server Components vs Client Components
 
-# add events is not possible
+By default → Server Component
 
-# routing
+Server Components can:
 
-# folder name as file ( next js handles all routes based on name and we should follow their convention)
+Fetch data directly on the server.
 
-# file_name inside it should be page.tsx
+Access backend resources securely.
 
-# profile/page.tsx
+Keep sensitive information safe (not exposed to the client).
 
-# to use client side we should use "use client" at the top
+What Server Components cannot do:
 
-# nested route
+Use React hooks (useState, useEffect, etc.).
 
-# inside profile if we can go to differnt routes for example profile/account
+Handle client-side events like button clicks.
 
-# profile/account/page.tsx
+Client Components:
 
-# profile/page.tsx
+Add "use client" at the top.
 
-# dynamic Routes
+Can use hooks and handle events.
 
-# routes based on dymaic id -> userproile, product detail page
+Topic 5 - Routing
 
-# i mean foe every thig differnt values right
+Folder name = route name.
 
-# dyanmic page-> [slug] -> [id]
+Inside each folder, create page.tsx.
 
-# to get deatils
+Example:
 
-# params property
+app/profile/page.tsx → /profile
 
-# async function
+For client-side components, use "use client" at the top.
 
-# then fetch dynaic value here
+Nested Routes
 
-# layout
+Subfolders create nested routes.
 
-# root layout -> everything in will be in childern i mean common layout
+Example:
 
-# we can also create diffenet layout for diffenrnt things
+app/profile/page.tsx → /profile
+app/profile/account/page.tsx → /profile/account
 
-# layouts are used to create sharable layout for whole applications and particular folder
+Dynamic Routes
 
-# for example navigation for global
+For routes with dynamic values (like product detail or user profile).
 
-# side bar for paricular UI
+Use square brackets.
 
-# topic - catch all routes // optinal cache all routes
+Example:
 
-# muiltiple segments -> mobile / apple / < 1000 -> Multiple Slugs
+app/product/[id]/page.tsx → /product/123
 
-# catch all routes -> catch all segments
+Access dynamic values with params.
 
-# [...slug]. -> catch all routes
+Use async functions if you need to fetch data.
 
-# optional is just not mandatory
+Topic 6 - Catch-All and Optional Catch-All Routes
 
-# but [[]] -> double square brackets
+Catch-All: [...slug] → captures multiple segments.
+Example: /mobile/apple/1000.
 
-# topic - Clinet side hooks
+Optional Catch-All: [[...slug]] → same as above, but not required.
 
-# Link -> link Component
+Use double brackets [[]] for optional.
 
-# useRouter = Navigation
+Topic 7 - Client-Side Hooks
 
-# object just methods like back, forward, push,replace ... and more
+Link → navigate between pages without full reload.
 
-# usePathNAme = Navigation
+useRouter() → programmatic navigation (push, replace, back, forward).
 
-# gives route name ( pathName)
+usePathname() → get the current path. Useful for conditional UI.
 
-# if we want to exclude some thing in one UI we can usePathname and extract the path and reomve that.
+useSearchParams
+useSearchParams
 
-# use Search Params
+Topic 8 - Not Found Page
 
-# to extract the params in the url
+Create not-found.tsx for a custom 404 page.
 
-# used to serach some thing from url
+Can exist at root level or inside specific routes.
 
-# and use methods like get, getAll, has and more...
+Usually, one root-level file is enough.
 
-# Topic -> Not Found Page
+Topic 8 - Loading States
 
-# we can create on root level and and also in different levels with UI
+Create loading.tsx to show loading UI while data is being fetched.
 
-# but mostyly one is enough
+Can exist at global level or per route.
 
-# topic - Loading.tsx
+Automatically rendered when needed.
 
-# same as any level
+Topic 9 - Error Handling
 
-# if same one global
+Create error.tsx to handle unexpected errors and display fallback UI.
 
-# for different loading across different UIS
+Must be a client component.
 
-# create diffent files on each route folder
+Topic 9 - Route Groups
 
-# name should be loading.tsx
+Use parentheses ( ) to group routes without affecting the URL.
 
-# automatically renders
+Example:
 
-# error handiling -
+app/(auth)/login/page.tsx → /login
+app/(auth)/forgot-password/page.tsx → /forgot-password
 
-# error.tsx -> to handle unexpected errors and give fallback Uri
+Topic 10 - Metadata
 
-##################---------
+Very important for SEO.
 
-# Route Groups
+Can be static or dynamic.
 
-# () -> not inclded the router's url path
+Static example:
 
-# (auth) -> login, create, forgot-passowrd and more
+export const metadata = {
+title: "About Us",
+description: "This is the About page",
+};
 
-# meta Data
+Dynamic example:
 
-# very important for seo
-
-# static and dynamic metaData
-
-# data fetching in server and client componenets
+```tsx
+export async function generateMetadata({ params }) {
+  return { title: `Product ${params.id}` };
+}
+```
