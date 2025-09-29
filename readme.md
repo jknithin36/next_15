@@ -127,8 +127,10 @@ Use parentheses ( ) to group routes without affecting the URL.
 
 Example:
 
+<pre>
 app/(auth)/login/page.tsx → /login
 app/(auth)/forgot-password/page.tsx → /forgot-password
+</pre>
 
 Topic 10 - Metadata
 
@@ -138,10 +140,12 @@ Can be static or dynamic.
 
 Static example:
 
+```tsx
 export const metadata = {
-title: "About Us",
-description: "This is the About page",
+  title: "About Us",
+  description: "This is the About page",
 };
+```
 
 Dynamic example:
 
