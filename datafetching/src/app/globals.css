@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* Optional: generate named utilities (bg-card, text-muted, etc.) */
+@theme {
+  /* map your tokens into Tailwind's system if you want */
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+}
+
+/* === Theme Tokens === */
+:root {
+  --bg: #f9f9f8;
+  --card: #ffffff;
+  --text: #111816;
+  --muted: #535353;
+  --border: #eee4d8;
+}
+
+/* === Base Styles === */
+@layer base {
+  html,
+  body {
+    background: var(--bg);
+    color: var(--text);
+  }
+  body {
+    @apply antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply tracking-tight;
+  }
+  h1 {
+    @apply text-4xl md:text-5xl font-semibold;
+  }
+  h2 {
+    @apply text-2xl md:text-3xl font-semibold;
+  }
+  h3 {
+    @apply text-xl md:text-2xl font-semibold;
+  }
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+/* === Components === */
+@layer components {
+  .doc-container {
+    @apply mx-auto w-full max-w-5xl px-6 py-10;
+  }
+
+  .doc-card {
+    @apply border rounded-xl shadow-sm;
+    border-color: var(--border); /* v4 needs explicit color */
+    background: var(--card);
+  }
+
+  .doc-section {
+    @apply border rounded-xl shadow-sm p-6 md:p-8;
+    border-color: var(--border);
+    background: var(--card);
+  }
+
+  .doc-muted {
+    color: var(--muted);
+  }
+
+  .doc-code {
+    @apply rounded px-1.5 py-0.5 font-mono text-[0.95em];
+    background: #f3f4f6;
+  }
+
+  .doc-link {
+    @apply underline underline-offset-4 hover:decoration-current;
+    text-decoration-color: var(--border);
+  }
+
+  .sidebar {
+    @apply border-r;
+    border-color: var(--border);
+    background: var(--card);
+  }
+
+  .sidebar-title {
+    @apply px-4 py-4 text-sm font-medium uppercase tracking-wider;
+    color: var(--muted);
+  }
+
+  .nav-link {
+    @apply block px-4 py-2.5 text-sm rounded-lg hover:bg-gray-50 transition-colors;
+  }
+  .nav-link-active {
+    @apply bg-gray-100 font-medium;
+  }
+}

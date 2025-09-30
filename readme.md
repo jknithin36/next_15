@@ -155,3 +155,73 @@ export async function generateMetadata({ params }) {
   return { title: `Product ${params.id}` };
 }
 ```
+
+# end of day 1 - 7hrs
+
+# Topic 12 - Data Fetching
+
+Server Component Data Fetching
+
+Used fetch directly in a server component.
+
+By default, Next.js caches responses automatically.
+
+Cache options:
+
+force-cache → Use cache if available, otherwise fetch fresh.
+
+reload → Always fetch new data and update cache.
+
+no-store → Never cache, always fresh data.
+
+Example: fetching products and rendering server-side.
+
+useEffect Hook (Client Component)
+
+The basic React way of fetching data on mount.
+
+Steps:
+
+Create state for data and loading.
+
+Call API in useEffect.
+
+Update state after fetching.
+
+Example: Products fetched and shown after component renders.
+
+use Hook
+
+New React hook for handling promises directly.
+
+Used with <Suspense> for loading fallback.
+
+Example: Fetching users list with use(usersPromise).
+
+Advantage: Cleaner async code inside components.
+
+SWR Hook (Third Party Library)
+
+SWR = Stale While Revalidate.
+
+Easy way to handle data fetching + caching in client.
+
+Features used:
+
+revalidateOnFocus: true → Refresh when tab refocuses.
+
+refreshInterval: 30000 → Auto refresh every 30s.
+
+errorRetryCount: 3 → Retry on error.
+
+Exposes data, error, isLoading, mutate().
+
+Used mutate() to refresh data on button click.
+
+# End of Story – Day 2 (3 hrs)
+
+Learned about different ways of data fetching in React and Next.js.
+
+checked server-side fetch, useEffect, the new use hook, and SWR hook
+
+focused on getting data, not on mutations
